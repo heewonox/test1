@@ -94,3 +94,38 @@ where e.deptno=30 and e.deptno=d.dno and sal>=1500;
 select job,count(x) from employ
 group by job having count(x)>=4;
 
+-- 과제임
+
+-- 1
+
+SELECT dname from employ e,department d
+WHERE e.ename="ALLEN" AND e.deptno=d.dno;
+
+-- 2
+
+SELECT eno, ename, hiredate, sal from employ e
+where e.deptno=(
+	SELECT deptno from employ e
+	where e.ename="JONES"
+);
+
+-- 3
+
+SELECT eno, ename, sal from employ
+WHERE sal>(
+	SELECT MAX(sal) from employ
+	WHERE deptno=30
+);
+
+-- 4
+
+SELECT dname from employ e,department d
+WHERE e.ename="ALLEN" AND e.deptno=d.dno;
+
+-- 5
+
+SELECT eno, ename, sal from employ
+WHERE sal>(
+	SELECT MIN(sal) from employ
+	WHERE deptno=30
+);
